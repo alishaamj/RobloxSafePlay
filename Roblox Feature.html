@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alisha Amjad — Safer Play (Roblox Product Case Study)</title>
+<style>
+  :root{
+    --bg:#08081c;--bg2:#0e0b28;--panel:rgba(255,255,255,.045);--panelbrd:rgba(255,255,255,.09);
+    --ink:#eef0ff;--muted:#9aa0cf;--line:rgba(255,255,255,.1);
+    --p1:#5b8cff;--p2:#ff5da2;--p3:#19e3c4;--p4:#ffd166;--p5:#a66bff;
+    --glow:0 0 40px rgba(91,140,255,.25);
+    --shadow:0 14px 40px rgba(0,0,0,.45);--shadow2:0 24px 60px rgba(0,0,0,.6);
+    --font:"Trebuchet MS","Segoe UI",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--font);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    background:
+      radial-gradient(900px 500px at 12% 2%,rgba(91,140,255,.16),transparent 55%),
+      radial-gradient(800px 500px at 90% 20%,rgba(166,107,255,.18),transparent 55%),
+      radial-gradient(700px 500px at 50% 100%,rgba(255,93,162,.1),transparent 55%),
+      linear-gradient(180deg,#08081c,#0a0924 50%,#0b0a22);
+    background-attachment:fixed}
+  .wrap{max-width:920px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+  h1,h2,h3{line-height:1.12;letter-spacing:-.01em;margin:0}
+  p{margin:0 0 14px}
+  a{color:var(--p1)}
+  .tag{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:6px 13px;border-radius:999px}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;color:#fff;padding:84px 0 96px;
+    background:linear-gradient(120deg,#0b0a2e,#191147 45%,#3a1458 100%);
+    background-size:220% 220%;animation:grad 16s ease infinite;
+    border-bottom:1px solid rgba(255,255,255,.08)}
+  @keyframes grad{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  .grid{position:absolute;inset:0;z-index:0;opacity:.35;
+    background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+    background-size:44px 44px;mask:radial-gradient(700px 400px at 70% 20%,#000,transparent 75%)}
+  .blob{position:absolute;border-radius:30px;z-index:0}
+  .b1{width:120px;height:120px;background:linear-gradient(135deg,var(--p1),var(--p5));top:44px;right:60px;box-shadow:0 0 50px rgba(91,140,255,.6),0 20px 40px rgba(91,140,255,.4);animation:float 7s ease-in-out infinite}
+  .b2{width:66px;height:66px;background:linear-gradient(135deg,var(--p2),#ff8ac0);bottom:70px;right:150px;box-shadow:0 0 40px rgba(255,93,162,.6);animation:float 9s ease-in-out infinite .4s}
+  .b3{width:50px;height:50px;background:linear-gradient(135deg,var(--p3),#4fe0d2);top:140px;right:224px;box-shadow:0 0 36px rgba(25,227,196,.6);animation:float 8s ease-in-out infinite .2s}
+  .b4{width:40px;height:40px;background:linear-gradient(135deg,var(--p4),#ffb703);bottom:150px;right:70px;box-shadow:0 0 34px rgba(255,209,102,.6);animation:float 6.5s ease-in-out infinite .6s}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(12deg)}50%{transform:translateY(-18px) rotate(22deg)}}
+  .hero .tag{background:rgba(255,255,255,.12);color:#e3e5ff;border:1px solid rgba(255,255,255,.14)}
+  .hero h1{font-size:clamp(38px,6.6vw,66px);font-weight:800;margin:16px 0 12px;
+    background:linear-gradient(100deg,#fff 30%,#b9c4ff 70%,#e6b9ff);-webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 0 50px rgba(120,120,255,.25)}
+  .hero .sub{font-size:clamp(17px,2.4vw,21px);color:#ccd0f4;max-width:650px;font-weight:600}
+  .byline{margin-top:26px;font-size:15.5px;color:#cdd1f6;max-width:660px;font-weight:600;
+    background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:12px 16px;display:inline-block}
+  .byline b{color:#fff}
+  .byline .st{color:var(--p3)}
+  .disclaimer{margin-top:14px;font-size:12.5px;color:#8f93c6;max-width:660px}
+
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  .kicker{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#fff;
+    background:linear-gradient(135deg,var(--p1),var(--p5));padding:5px 13px;border-radius:999px;box-shadow:0 0 22px rgba(120,120,255,.4)}
+  h2{font-size:clamp(25px,3.7vw,35px);font-weight:800;margin:14px 0 18px;color:#fff}
+  h3{font-size:19px;font-weight:800;margin:0 0 6px;color:#fff}
+  .lead{font-size:18px;color:#c3c7ea}
+  p{color:#bcc0e6}
+
+  .pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0}
+  .pill{background:var(--panel);border:1px solid var(--panelbrd);border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:600;color:#d2d6f5;transition:transform .2s,box-shadow .2s}
+  .pill:hover{transform:translateY(-3px);box-shadow:var(--glow)}
+
+  .statement{background:linear-gradient(135deg,rgba(91,140,255,.12),rgba(255,93,162,.1));border:1px solid rgba(140,150,255,.3);border-left:4px solid var(--p1);border-radius:16px;padding:20px 22px;margin:20px 0;font-size:18px;font-weight:700;color:#eef0ff;box-shadow:inset 0 0 40px rgba(91,140,255,.08)}
+
+  .gap{display:grid;gap:16px;margin-top:8px}
+  @media(min-width:680px){.gap{grid-template-columns:1fr 1fr}}
+  .gapcard,.card,.layer,.box,.screen{background:var(--panel);border:1px solid var(--panelbrd);backdrop-filter:blur(6px)}
+  .gapcard{border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s,border-color .25s}
+  .gapcard:hover{transform:translateY(-5px);box-shadow:var(--shadow2);border-color:rgba(255,93,162,.4)}
+  .gapcard .n{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--p2)}
+
+  .layers{display:grid;gap:14px;margin-top:22px}
+  .layer{display:flex;gap:16px;align-items:flex-start;border-radius:16px;padding:18px 20px;box-shadow:var(--shadow);transition:transform .25s,border-color .25s}
+  .layer:hover{transform:translateX(6px);border-color:rgba(25,227,196,.4)}
+  .layer .num{flex:0 0 auto;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px}
+  .l1 .num{background:linear-gradient(135deg,var(--p1),var(--p5));box-shadow:0 0 24px rgba(91,140,255,.5)}
+  .l2 .num{background:linear-gradient(135deg,var(--p3),#0fb5a0);box-shadow:0 0 24px rgba(25,227,196,.5)}
+  .l3 .num{background:linear-gradient(135deg,var(--p4),#ff9f1c);box-shadow:0 0 24px rgba(255,209,102,.5)}
+  .layer small{display:inline-block;font-weight:800;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+
+  /* MOCKUP */
+  .mock{margin:26px 0 6px;display:grid;gap:20px;align-items:start}
+  @media(min-width:760px){.mock{grid-template-columns:1fr 1fr}}
+  .screen{border-radius:26px;box-shadow:var(--shadow2);overflow:hidden}
+  .screen .bar{background:linear-gradient(135deg,#2a1f6b,#5a1f7e);color:#fff;padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .screen.kid .bar{background:linear-gradient(135deg,#0f766e,#17c3b2)}
+  .screen .bar .ttl{font-weight:800;font-size:15.5px}
+  .screen .bar .meta{font-size:12px;color:#d3d7ff;margin-top:2px}
+  .screen .body{padding:14px 16px 18px}
+
+  .grow{display:flex;align-items:center;gap:12px;padding:11px 10px;border-radius:13px;transition:background .2s}
+  .grow:hover{background:rgba(255,255,255,.05)}
+  .grow .ic{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-size:19px;flex:0 0 auto}
+  .grow .gname{font-weight:700;font-size:14.5px;color:#fff}
+  .grow .gsub{font-size:11.5px;color:var(--muted)}
+  .tg{margin-left:auto;width:46px;height:27px;border-radius:999px;background:rgba(255,255,255,.14);position:relative;cursor:pointer;transition:background .25s,box-shadow .25s;flex:0 0 auto;border:none}
+  .tg::after{content:"";position:absolute;top:3px;left:3px;width:21px;height:21px;border-radius:50%;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,.4);transition:transform .25s}
+  .tg[aria-pressed="true"]{background:linear-gradient(135deg,var(--p3),#0fb5a0);box-shadow:0 0 18px rgba(25,227,196,.6)}
+  .tg[aria-pressed="true"]::after{transform:translateX(19px)}
+
+  .dash{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .gtile{border-radius:14px;padding:12px;color:#fff;min-height:74px;display:flex;flex-direction:column;justify-content:flex-end;font-weight:800;font-size:13.5px;box-shadow:0 8px 20px rgba(0,0,0,.4);animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+  .gtile .gt{font-size:10.5px;font-weight:700;opacity:.92;text-transform:uppercase;letter-spacing:.04em}
+  @keyframes pop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+  .empty{grid-column:1/-1;text-align:center;color:var(--muted);font-size:13px;padding:24px 10px;border:2px dashed var(--line);border-radius:14px}
+  .hint{font-size:12.5px;color:var(--muted);margin-top:12px;text-align:center}
+  .hint b{color:var(--p3)}
+
+  .feat{display:grid;gap:18px;margin-top:8px}
+  @media(min-width:680px){.feat{grid-template-columns:1fr 1fr}}
+  .card{border-radius:18px;padding:22px;box-shadow:var(--shadow);transition:transform .25s,box-shadow .25s,border-color .25s}
+  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow2);border-color:rgba(91,140,255,.45)}
+  .card .chip{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--p2)}
+  .card.sec .chip{color:var(--p1)}
+  .flow{list-style:none;padding:0;margin:14px 0 0;counter-reset:s}
+  .flow li{position:relative;padding:8px 0 8px 34px;font-size:14.5px;border-top:1px dashed var(--line);color:#c3c7ea}
+  .flow li:first-child{border-top:none}
+  .flow li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:7px;width:22px;height:22px;background:rgba(255,255,255,.07);border:1px solid var(--panelbrd);border-radius:7px;font-size:12px;font-weight:800;display:grid;place-items:center;color:#cfd3f5}
+
+  .quote{background:linear-gradient(135deg,rgba(91,140,255,.14),rgba(166,107,255,.12));border:1px solid rgba(140,150,255,.3);border-radius:16px;padding:18px 20px;margin-top:16px;font-size:15.5px;color:#e2e5ff}
+  .quote b{color:var(--p3)}
+
+  .metrics{display:grid;gap:14px;margin-top:10px}
+  @media(min-width:680px){.metrics{grid-template-columns:repeat(3,1fr)}}
+  .metric{border-radius:16px;padding:18px;color:#fff;transition:transform .25s;box-shadow:var(--shadow)}
+  .metric:hover{transform:translateY(-5px)}
+  .m1{background:linear-gradient(140deg,#4f6bff,#7a5bff);box-shadow:0 10px 30px rgba(91,140,255,.35)}
+  .m2{background:linear-gradient(140deg,#12b5a4,#0fb5a0);box-shadow:0 10px 30px rgba(25,227,196,.3)}
+  .m3{background:linear-gradient(140deg,#ff5da2,#ff3d8b);box-shadow:0 10px 30px rgba(255,93,162,.35)}
+  .metric .t{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;opacity:.95}
+  .metric .v{font-size:15.5px;font-weight:700;margin-top:6px;line-height:1.3}
+
+  .two{display:grid;gap:18px}
+  @media(min-width:680px){.two{grid-template-columns:1fr 1fr}}
+  .box{border-radius:16px;padding:20px}
+  .box h3{font-size:16px}
+  ul.clean{margin:8px 0 0;padding-left:18px}
+  ul.clean li{margin:7px 0;font-size:15px;color:#c3c7ea}
+  .ship{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+  .ship .now{background:rgba(25,227,196,.14);border:1px solid rgba(25,227,196,.4);color:#7af0dd;font-size:12px}
+  .ship .later{background:rgba(255,209,102,.12);border:1px solid rgba(255,209,102,.4);color:#ffdd8f;font-size:12px}
+
+  footer{padding:50px 0;text-align:center;border:none;background:linear-gradient(180deg,transparent,rgba(166,107,255,.08))}
+  footer b{color:#fff}
+  footer .tag{background:rgba(255,255,255,.1);color:#dfe2ff;border:1px solid rgba(255,255,255,.14);margin-bottom:12px}
+  footer h2{font-size:26px}
+  footer p{color:#c3c7ea}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <span class="grid"></span>
+  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span>
+  <div class="wrap">
+    <span class="tag">Product Case Study · Self-directed</span>
+    <h1>Safer Play</h1>
+    <p class="sub">Give parents real control over what young players see — and give chat filters a fighting chance against the oldest trick online: spelling it differently.</p>
+    <div class="byline"><b>Alisha Amjad</b> · <span class="st">Senior in Cybersecurity at Purdue University</span> (#4 program in the country) · Daily, experienced Roblox player</div>
+    <p class="disclaimer">An independent product exercise, not affiliated with or endorsed by Roblox. Any figures shown are my own proposed targets and example data, not Roblox metrics.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap reveal">
+    <span class="kicker">The pitch</span>
+    <h2>Parental Genres &amp; Guardrails</h2>
+    <p class="lead">Two features that make Roblox safer for young players: <strong>Play Picks</strong>, where parents curate the genres their kids can even see, and a <strong>phonetic-aware profanity guardrail</strong> that catches the disguised swearing today's filters miss. I'm bringing them because I study cybersecurity and I'm on Roblox almost every night — in one lab project I perturbed text with misspellings and swaps to fool an AI classifier, the exact move a kid uses to slip hostile language past a chat filter. Defending against it is just the inverse of the attack I already studied.</p>
+    <div class="pill-row">
+      <span class="pill">🛡️ SOC analyst — threat detection</span>
+      <span class="pill">🎮 Daily player — I live in the product</span>
+      <span class="pill">🧪 Studied adversarial text evasion</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    <span class="kicker">The problem</span>
+    <h2>Two gaps that hit young players hardest</h2>
+    <div class="gap">
+      <div class="gapcard">
+        <span class="n">Gap 1 · Discovery is too blunt</span>
+        <h3>Age ratings aren't taste</h3>
+        <p style="margin:8px 0 0;font-size:15px">A rating answers &ldquo;is this game allowed for 8+?&rdquo; It can't answer &ldquo;does <em>this family</em> want their 8-year-old seeing shooters or horror?&rdquo; Young kids browse a dashboard that surfaces everything in their age band, and one scary recommendation is a single tap away.</p>
+      </div>
+      <div class="gapcard">
+        <span class="n">Gap 2 · Filters lose the arms race</span>
+        <h3>Phonetics beat the word list</h3>
+        <p style="margin:8px 0 0;font-size:15px">Profanity filters match exact words, so kids route around them — swapping characters (0 for o, 1 for i), adding spaces, or using homophones. The filter sees nonsense; the other kid reads the insult.</p>
+      </div>
+    </div>
+    <div class="statement">Parents can't shape what their kids actually see, and our word filters are beaten by the oldest trick online — spelling it differently.</div>
+    <p style="color:var(--muted);font-size:15px"><strong style="color:#cfd3f5">Who this is for:</strong> players aged 5&ndash;14 first, their guardians, and the creators who lose trust when a young player has a bad experience.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    <span class="kicker">My lens</span>
+    <h2>Borrowing &ldquo;defense in depth&rdquo; from security</h2>
+    <p class="lead">In security we never trust a single wall — we layer controls so that if one fails, the next still catches the harm. Safety for kids should work the same way.</p>
+    <div class="layers">
+      <div class="layer l1"><div class="num">1</div><div><small>Shape</small><h3>Control what's allowed in</h3><p style="margin:4px 0 0">Let parents curate the genres their kids can even see — prevention by shaping the environment, not patching it afterward.</p></div></div>
+      <div class="layer l2"><div class="num">2</div><div><small>Normalize &amp; detect</small><h3>Match what it <em>sounds like</em>, not what it's spelled like</h3><p style="margin:4px 0 0">Don't match raw text — normalize out the obfuscation first, then detect. This is how you beat phonetic evasion.</p></div></div>
+      <div class="layer l3"><div class="num">3</div><div><small>Respond</small><h3>Low-friction reporting</h3><p style="margin:4px 0 0">When something slips through, make it one tap to report, with context already attached.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    <span class="kicker">Feature 1 · Shape</span>
+    <h2>&ldquo;Play Picks&rdquo; — parent-curated genres</h2>
+    <p class="lead">Parents toggle the genres each child (5&ndash;14) can play. Only allowed genres populate that child's Discover, Search, and charts — everything else is filtered out before it's ever shown. Age-band defaults get them started; parents adjust by values, not just age.</p>
+
+    <div class="mock">
+      <div class="screen">
+        <div class="bar"><div class="ttl">👪 Parent Controls</div><div class="meta">What can <b id="kidName">Maya</b> (age 8) play?</div></div>
+        <div class="body" id="controls"></div>
+      </div>
+      <div class="screen kid">
+        <div class="bar"><div class="ttl">🎮 Maya's Dashboard</div><div class="meta">Only shows what you've allowed</div></div>
+        <div class="body"><div class="dash" id="dash"></div></div>
+      </div>
+    </div>
+    <p class="hint">👆 This is a live mockup — <b>toggle a genre</b> on the left and watch Maya's dashboard update. Flip on <b>Shooting</b> or <b>Horror</b> to see what gets filtered out today.</p>
+
+    <p style="margin-top:20px"><strong style="color:#fff">Why it's different from age ratings:</strong> ratings are a floor set by Roblox; Play Picks is a dial set by the family. It turns a one-size-fits-all age gate into a parent's actual preferences, and it works on discovery — so the off-limits games never tempt the kid in the first place.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    <span class="kicker">Feature 2 · Normalize &amp; detect</span>
+    <h2>A phonetic-aware profanity guardrail</h2>
+    <p class="lead">The fix for filter evasion isn't a longer blocklist — it's normalizing the text <em>before</em> you match it, so a disguised word like &ldquo;h8&rdquo; and its spaced-out version &ldquo;h a t e&rdquo; collapse to the same word the filter already knows.</p>
+    <div class="feat">
+      <div class="card sec">
+        <span class="chip">How it works</span>
+        <h3 style="margin:8px 0">Normalize, then match</h3>
+        <ul class="flow">
+          <li>Strip spacing, repeats and symbols; map leetspeak (0→o, 1→i, @→a, !→i).</li>
+          <li>Convert to a &ldquo;sounds-like&rdquo; phonetic form to catch homophones and creative spellings.</li>
+          <li>Match that against the blocklist + a model, then keep learning as kids invent new spellings.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="chip">Why me</span>
+        <h3 style="margin:8px 0">The inverse of an attack I studied</h3>
+        <p style="font-size:15px">My adversarial-testing project perturbed text — swaps, misspellings, spacing — to flip a classifier's output. That's the same evasion kids use on chat filters. I've already practiced the attack; this guardrail is the defense.</p>
+        <div class="quote">Treat the filter like any detection system: attackers (and kids) adapt, so it has to <b>keep updating</b> — a blocklist you set once is already out of date.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    <span class="kicker">How I'd measure it</span>
+    <h2>Success metrics &amp; guardrails</h2>
+    <p>A safety feature can &ldquo;win&rdquo; by making the platform worse to use — so I'd pair a north star with guardrails that protect the experience and the creators.</p>
+    <div class="metrics">
+      <div class="metric m1"><div class="t">★ North star</div><div class="v">Fewer young players exposed to age-inappropriate content or obfuscated profanity per active week</div></div>
+      <div class="metric m2"><div class="t">Feature signals</div><div class="v">% of guardians who set genre preferences · catch-rate on a red-team set of disguised profanity · report-completion for under-13s</div></div>
+      <div class="metric m3"><div class="t">Guardrails</div><div class="v">No tanking of young-player time in allowed genres · filter false-positive rate under threshold · small-creator impact watched</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap reveal">
+    <span class="kicker">Shipping it</span>
+    <h2>What I'd ship first — and what I'd cut</h2>
+    <div class="ship"><span class="tag now">Ship first</span><span class="tag later">Defer</span></div>
+    <div class="two" style="margin-top:14px">
+      <div class="box">
+        <h3>MVP</h3>
+        <ul class="clean">
+          <li>Play Picks for ages 5&ndash;9 (highest parental demand), genre toggles with age-band defaults, applied to Discover + Search.</li>
+          <li>Phonetic filter on text chat, English first, tuned conservatively.</li>
+          <li>Instrument everything to prove impact before expanding.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Deliberately deferred</h3>
+        <ul class="clean">
+          <li>Per-game overrides (start at genre level — simpler, lower-maintenance).</li>
+          <li>Phonetic filtering in voice chat and other languages (separate, harder models).</li>
+          <li>Guardian dashboards &amp; weekly digests (phase 2).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap reveal">
+    <h2 style="color:#fff;font-size:24px">Alisha Amjad</h2>
+    <p style="margin:10px 0 0"><a href="mailto:alishaamjad109@gmail.com" style="color:#9fb4ff">alishaamjad109@gmail.com</a> · <a href="https://www.linkedin.com/in/alishaamjad" style="color:#9fb4ff">linkedin.com/in/alishaamjad</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var genres=[
+    {key:"trivia",name:"Trivia",sub:"Quiz & brain games",icon:"🧠",color:"#5b8cff",on:true,games:["Quiz Party","Brain Dash"]},
+    {key:"dressup",name:"Dress Up",sub:"Style & roleplay",icon:"👗",color:"#ff5da2",on:true,games:["Fashion Star","Pet Salon"]},
+    {key:"puzzles",name:"Puzzles",sub:"Logic & escape",icon:"🧩",color:"#19e3c4",on:true,games:["Block Logic","Escape It!"]},
+    {key:"obby",name:"Obby",sub:"Jump & run",icon:"🏃",color:"#ffd166",on:true,games:["Mega Obby","Tower Climb"]},
+    {key:"racing",name:"Racing",sub:"Karts & speed",icon:"🏎️",color:"#a66bff",on:true,games:["Kart Rush","Speed City"]},
+    {key:"shooting",name:"Shooting",sub:"Blasters & combat",icon:"🔫",color:"#e5484d",on:false,games:["Laser Arena","Strike Force"]},
+    {key:"horror",name:"Horror",sub:"Scares & survival",icon:"👻",color:"#6b6b8a",on:false,games:["Night Shift","The Hallway"]}
+  ];
+  var controls=document.getElementById('controls');
+  var dash=document.getElementById('dash');
+  function renderControls(){
+    controls.innerHTML='';
+    genres.forEach(function(g){
+      var row=document.createElement('div'); row.className='grow';
+      row.innerHTML='<div class="ic" style="background:'+g.color+'2e;color:'+g.color+'">'+g.icon+'</div>'+
+        '<div><div class="gname">'+g.name+'</div><div class="gsub">'+g.sub+'</div></div>'+
+        '<button class="tg" aria-pressed="'+g.on+'" aria-label="Allow '+g.name+'"></button>';
+      var btn=row.querySelector('.tg');
+      btn.addEventListener('click',function(){ g.on=!g.on; btn.setAttribute('aria-pressed',g.on); renderDash(); });
+      controls.appendChild(row);
+    });
+  }
+  function renderDash(){
+    dash.innerHTML=''; var any=false;
+    genres.forEach(function(g){
+      if(!g.on) return;
+      g.games.forEach(function(name){
+        any=true;
+        var t=document.createElement('div'); t.className='gtile';
+        t.style.background='linear-gradient(140deg,'+g.color+','+shade(g.color)+')';
+        t.innerHTML='<div class="gt">'+g.icon+' '+g.name+'</div>'+name;
+        dash.appendChild(t);
+      });
+    });
+    if(!any){ var e=document.createElement('div'); e.className='empty'; e.textContent='No genres allowed yet — toggle some on to fill Maya’s dashboard.'; dash.appendChild(e); }
+  }
+  function shade(hex){
+    var c=hex.replace('#',''); var r=parseInt(c.substr(0,2),16),g=parseInt(c.substr(2,2),16),b=parseInt(c.substr(4,2),16);
+    r=Math.max(0,r-40);g=Math.max(0,g-40);b=Math.max(0,b-40);
+    return 'rgb('+r+','+g+','+b+')';
+  }
+  renderControls(); renderDash();
+
+  var reveals=document.querySelectorAll('.reveal');
+  function showAll(){reveals.forEach(function(el){el.classList.add('in')});}
+  try{
+    if('IntersectionObserver' in window){
+      var obs=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target);} }); },{threshold:.12});
+      reveals.forEach(function(el){obs.observe(el)}); setTimeout(showAll,2500);
+    }else{showAll();}
+  }catch(err){showAll();}
+})();
+window.addEventListener('error',function(){document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in')});});
+</script>
+</body>
+</html>
